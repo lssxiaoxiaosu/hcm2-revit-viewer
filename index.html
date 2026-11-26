@@ -6,7 +6,7 @@
   <meta name="description" content="HCM2 ST04 Revit 主体模型的三维查看与剖切">
   <meta name="color-scheme" content="light">
   <title>HCM2 ST04 · 三维模型</title>
-  <link rel="stylesheet" href="./viewer.css">
+  <link rel="stylesheet" href="./viewer.css?v=3">
 </head>
 <body>
   <header class="header">
@@ -14,28 +14,34 @@
       <h1>HCM2 ST04</h1>
       <p>主体模型 · Revit</p>
     </div>
-    <a href="./model.glb" download="HCM2-ST04.glb" class="button">下载 GLB</a>
+    <div class="header-actions">
+      <button id="inspector-toggle" type="button" disabled aria-expanded="true" aria-controls="inspector">隐藏属性</button>
+      <a href="./model.glb" download="HCM2-ST04.glb" class="button">下载 GLB</a>
+    </div>
   </header>
   <main class="layout">
     <section id="viewport" aria-label="三维模型视口">
-      <div class="tools" aria-label="视图操作">
-        <button id="home" type="button" disabled>复位视图</button>
-        <button id="top" type="button" disabled>俯视</button>
-        <button id="pan" type="button" aria-pressed="false" disabled>平移模式</button>
-        <button id="section-toggle" type="button" aria-expanded="false" aria-controls="section" disabled>剖切</button>
-      </div>
-      <section id="section" class="section" hidden aria-labelledby="section-title">
-        <div class="section-heading">
-          <h2 id="section-title">轴向剖切</h2>
-          <button id="clear-sections" type="button">清除</button>
+      <div class="view-controls">
+        <div class="tools" aria-label="视图操作">
+          <button id="steel-view" type="button" disabled>一键查看钢支撑</button>
+          <button id="home" type="button" disabled>复位视图</button>
+          <button id="top" type="button" disabled>俯视</button>
+          <button id="pan" type="button" aria-pressed="false" disabled>平移模式</button>
+          <button id="section-toggle" type="button" aria-expanded="false" aria-controls="section" disabled>剖切</button>
         </div>
-        <div id="section-controls"></div>
-        <p class="muted">剖切位置相对模型包围盒最小点。</p>
-      </section>
-      <div class="instructions">拖动旋转 · 滚轮缩放 · 右键拖动平移 · 点击构件查看属性</div>
+        <section id="section" class="section" hidden aria-labelledby="section-title">
+          <div class="section-heading">
+            <h2 id="section-title">轴向剖切</h2>
+            <button id="clear-sections" type="button">清除</button>
+          </div>
+          <div id="section-controls"></div>
+          <p class="muted">剖切位置相对模型包围盒最小点。</p>
+        </section>
+      </div>
+      <div class="instructions">拖动旋转 · 滚轮缩放 · 右键拖动平移<span id="inspect-hint"> · 点击构件查看属性</span></div>
       <div id="loading" class="notice" role="status">正在加载模型…</div>
     </section>
-    <aside class="inspector" aria-labelledby="inspector-title">
+    <aside id="inspector" class="inspector" aria-labelledby="inspector-title">
       <div class="inspector-heading">
         <h2 id="inspector-title">构件属性</h2>
         <button id="clear-selection" type="button" hidden>取消选中</button>
@@ -52,7 +58,7 @@
     </aside>
   </main>
   <footer class="footer"><span id="coverage">正在读取模型信息</span><span>RVT 主体三维实体 · 混凝土灰 / 钢材红</span></footer>
-  <script type="module" src="./viewer.js?v=2"></script>
+  <script type="module" src="./viewer.js?v=3"></script>
 </body>
 </html>
 
