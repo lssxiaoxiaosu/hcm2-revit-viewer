@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="HCM2 ST04 Revit 主体模型的三维查看与剖切">
+  <meta name="color-scheme" content="light">
+  <title>HCM2 ST04 · 三维模型</title>
+  <link rel="stylesheet" href="./viewer.css">
+</head>
+<body>
+  <header class="header">
+    <div class="title-block">
+      <h1>HCM2 ST04</h1>
+      <p>主体模型 · Revit</p>
+    </div>
+    <a href="./model.glb" download="HCM2-ST04.glb" class="button">下载 GLB</a>
+  </header>
+  <main class="layout">
+    <section id="viewport" aria-label="三维模型视口">
+      <div class="tools" aria-label="视图操作">
+        <button id="home" type="button" disabled>复位视图</button>
+        <button id="top" type="button" disabled>俯视</button>
+        <button id="pan" type="button" aria-pressed="false" disabled>平移模式</button>
+        <button id="section-toggle" type="button" aria-expanded="false" aria-controls="section" disabled>剖切</button>
+      </div>
+      <section id="section" class="section" hidden aria-labelledby="section-title">
+        <div class="section-heading">
+          <h2 id="section-title">轴向剖切</h2>
+          <button id="clear-sections" type="button">清除</button>
+        </div>
+        <div id="section-controls"></div>
+        <p class="muted">剖切位置相对模型包围盒最小点。</p>
+      </section>
+      <div class="instructions">拖动旋转 · 滚轮缩放 · 右键拖动平移 · 点击构件查看属性</div>
+      <div id="loading" class="notice" role="status">正在加载模型…</div>
+    </section>
+    <aside class="inspector" aria-labelledby="inspector-title">
+      <div class="inspector-heading">
+        <h2 id="inspector-title">构件属性</h2>
+        <button id="clear-selection" type="button" hidden>取消选中</button>
+      </div>
+      <label for="element-id">查找 Revit 构件 ID</label>
+      <form id="find-form">
+        <input id="element-id" type="search" inputmode="numeric" placeholder="输入 ID" disabled>
+        <button type="submit" disabled>定位</button>
+      </form>
+      <p id="find-status" class="muted" aria-live="polite"></p>
+      <div id="properties" aria-live="polite">
+        <p class="muted">在模型中点击构件，查看保存的属性和材质。</p>
+      </div>
+    </aside>
+  </main>
+  <footer class="footer"><span id="coverage">正在读取模型信息</span><span>RVT 主体三维实体 · 混凝土灰 / 钢材红</span></footer>
+  <script type="module" src="./viewer.js"></script>
+</body>
+</html>
+
